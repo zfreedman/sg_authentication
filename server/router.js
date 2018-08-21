@@ -11,5 +11,6 @@ module.exports = function (app) {
       hi: "there"
     });
   });
+  
   app.post("/signup", Authentication.signup);
 };
