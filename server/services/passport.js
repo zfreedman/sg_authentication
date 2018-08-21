@@ -7,7 +7,7 @@ const User = require("../models/user");
 
 // setup options for jwt strategy
 const jwtOptions = {
-  jwFromRequest: ExtractJwt.fromHeader("authorization"),
+  jwtFromRequest: ExtractJwt.fromHeader("authorization"),
   secretOrKey: config.secret
 };
 
