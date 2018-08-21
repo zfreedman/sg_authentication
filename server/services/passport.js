@@ -30,9 +30,6 @@ const jwtLogin = new JwtStrategy(jwtOptions, function (payload, done) {
   });
 });
 
-// tell passport to use this strategy
-passport.use(jwtLogin);
-
 
 // create local strategy
 const localOptions = { usernameField: "email" };
@@ -50,6 +47,20 @@ const localLogin = (
         return done(null, false);
 
       // compare passwords
+      user.comparePassword(password, function (err, isMatch) {
+
+        if (err)
+          return done(err);
+
+        if (!isMatch)
+          return done(null, false);
+
+        return done(null, user);
+      });
     });
   })
 );
+
+// tell passport to use strategies
+passport.use(jwtLogin);
+passport.use(localLogin);
