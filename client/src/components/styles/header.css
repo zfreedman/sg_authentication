@@ -1,0 +1,7 @@
+.header > div {
+  display: flex;
+  justify-content: space-between;
+}
+.header > div > * {
+  margin: 0 20px;
+}
