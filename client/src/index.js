@@ -13,7 +13,9 @@ import Welcome from "./components/welcome";
 
 const store = createStore(
   reducers,
-  {},
+  {
+    auth: { authenticated: localStorage.getItem("token") }
+  },
   applyMiddleware(reduxThunk)
 );
 
