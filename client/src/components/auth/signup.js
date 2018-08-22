@@ -32,17 +32,26 @@ class Signup extends React.Component {
           />
         </fieldset>
 
+        <div>
+          {this.props.errorMessage}
+        </div>
+
         <button>Sign up</button>
       </form>
     );
   }
 
   onSubmit = (formProps) => {
-    this.props.handleUserSignup(formProps);
+    this.props.handleUserSignup(
+      formProps,
+      () => this.props.history.push("/feature")
+    );
   };
 }
 
+let mapStateToProps = ({ auth }) => ({ errorMessage: auth.errorMessage });
+
 export default compose (
-  connect(null, { handleUserSignup }),
+  connect(mapStateToProps, { handleUserSignup }),
   reduxForm({ form: "signup" })
 )(Signup);
